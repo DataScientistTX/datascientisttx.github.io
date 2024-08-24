@@ -54,3 +54,39 @@ sr.reveal('.home__data, .about__img, .skills__subtitle, .skills__text',{});
 sr.reveal('.home__img, .about__subtitle, .about__text, .skills__img',{delay: 400}); 
 sr.reveal('.home__social-icon',{ interval: 200}); 
 sr.reveal('.skills__data, .work__img, .contact__input',{interval: 200}); 
+
+/*===== ROTATING TITLE COMPONENT =====*/
+const RotatingTitle = () => {
+  const titles = [
+    "Senior Data Scientist",
+    "Petroleum Engineer (Specialist)",
+    "Product Manager"
+  ];
+  const [currentTitleIndex, setCurrentTitleIndex] = React.useState(0);
+
+  React.useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentTitleIndex((prevIndex) => (prevIndex + 1) % titles.length);
+    }, 3000); // Change title every 3 seconds
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  return React.createElement(
+    'div',
+    { className: 'rotating-title' },
+    React.createElement(
+      'h1',
+      { className: 'text-xl font-bold text-blue-600 transition-opacity duration-500 ease-in-out' },
+      titles[currentTitleIndex]
+    )
+  );
+};
+
+/*===== RENDER ROTATING TITLE =====*/
+document.addEventListener('DOMContentLoaded', () => {
+  const rotatingTitleContainer = document.getElementById('rotating-title');
+  if (rotatingTitleContainer) {
+    ReactDOM.render(React.createElement(RotatingTitle), rotatingTitleContainer);
+  }
+});
