@@ -3,7 +3,7 @@
 const RotatingTitle = () => {
   const titles = [
     "Senior Data Scientist",
-    "Petroleum Engineer (Specialist)",
+    "Engineering Specialist",
     "Product Manager"
   ];
   const [currentTitleIndex, setCurrentTitleIndex] = React.useState(0);
@@ -17,13 +17,9 @@ const RotatingTitle = () => {
   }, []);
 
   return React.createElement(
-    'div',
-    { className: 'rotating-title' },
-    React.createElement(
-      'h1',
-      { className: 'text-xl font-bold transition-opacity duration-500 ease-in-out' },
-      titles[currentTitleIndex]
-    )
+    'span',
+    { className: 'home__rotating-title' },
+    titles[currentTitleIndex]
   );
 };
 
